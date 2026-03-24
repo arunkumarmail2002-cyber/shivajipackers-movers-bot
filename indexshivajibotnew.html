@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Get Free Quote - Shivaji Packers and Movers</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --primary: #F02435;
+    --primary-dark: #D31D2E;
+    --primary-light: #FEF0F1;
+    --accent: #1B4332;
+    --surface: #FAFAF8;
+    --card: #FFFFFF;
+    --text: #1A1A1A;
+    --text-muted: #6B7280;
+    --border: #E5E7EB;
+    --success: #059669;
+    --success-bg: #ECFDF5;
+    --error: #DC2626;
+    --error-bg: #FEF2F2;
+    --radius: 14px;
+    --radius-sm: 10px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--surface);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 20px 16px;
+  }
+  .form-wrapper { width: 100%; max-width: 460px; }
+
+  /* HEADER */
+  .form-header { text-align: center; margin-bottom: 20px; animation: fadeInDown 0.5s ease; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: var(--primary-light); color: var(--primary);
+    font-size: 10.5px; font-weight: 700; padding: 4px 12px;
+    border-radius: 100px; margin-bottom: 10px; letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .badge svg { width: 12px; height: 12px; }
+  .form-header h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 24px; font-weight: 800; color: var(--text);
+    line-height: 1.15; margin-bottom: 4px;
+  }
+  .form-header p { font-size: 13px; color: var(--text-muted); }
+
+  /* CARD */
+  .form-card {
+    background: var(--card); border-radius: var(--radius);
+    padding: 24px 22px; box-shadow: 0 4px 14px rgba(0,0,0,0.07);
+    border: 1px solid var(--border); animation: fadeInUp 0.5s ease 0.08s both;
+  }
+
+  /* SECTION LABELS */
+  .section-label {
+    font-size: 11px; font-weight: 700; color: var(--primary);
+    text-transform: uppercase; letter-spacing: 0.8px;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 6px;
+  }
+  .section-label svg { width: 13px; height: 13px; }
+  .section-divider {
+    height: 1px; background: var(--border); margin: 18px 0 16px;
+  }
+
+  /* FIELDS */
+  .field { margin-bottom: 12px; }
+  .field label {
+    display: block; font-size: 12px; font-weight: 600;
+    color: var(--text); margin-bottom: 4px;
+  }
+  .field label .req { color: var(--error); }
+  .field input, .field select, .field textarea {
+    width: 100%; padding: 10px 12px; font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px; color: var(--text); background: var(--surface);
+    border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+    outline: none; transition: all 0.2s; -webkit-appearance: none;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus {
+    border-color: var(--primary); background: #fff;
+    box-shadow: 0 0 0 3px rgba(240,36,53,0.08);
+  }
+  .field input.err, .field select.err { border-color: var(--error); background: var(--error-bg); }
+  .field textarea { resize: vertical; min-height: 60px; }
+  .field select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%236B7280' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: right 12px center; padding-right: 32px;
+  }
+  .field .err-msg { font-size: 11px; color: var(--error); margin-top: 3px; display: none; }
+  .field.has-err .err-msg { display: block; }
+
+  /* ROW */
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+  /* SUBMIT */
+  .submit-btn {
+    width: 100%; padding: 13px; margin-top: 20px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px; font-weight: 700;
+    background: var(--primary); color: #fff; border: none;
+    border-radius: var(--radius-sm); cursor: pointer;
+    display: flex; align-items: center; justify-content: center; gap: 7px;
+    transition: all 0.25s; position: relative; overflow: hidden;
+  }
+  .submit-btn:hover {
+    background: var(--primary-dark); transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(240,36,53,0.3);
+  }
+  .submit-btn:active { transform: translateY(0); }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none !important; box-shadow: none !important; }
+  .submit-btn svg { width: 16px; height: 16px; }
+  .spinner {
+    width: 16px; height: 16px; border: 2.5px solid rgba(255,255,255,0.3);
+    border-top-color: #fff; border-radius: 50%; animation: spin 0.6s linear infinite;
+  }
+
+  /* ERROR BANNER */
+  .error-banner {
+    display: none; background: var(--error-bg); border: 1px solid #FECACA;
+    color: var(--error); font-size: 12.5px; padding: 9px 12px;
+    border-radius: var(--radius-sm); margin-bottom: 14px; text-align: center;
+  }
+  .error-banner.visible { display: block; animation: shake 0.4s ease; }
+
+  /* SUCCESS */
+  .success-state {
+    display: none; text-align: center; padding: 36px 16px;
+    animation: scaleIn 0.4s ease;
+  }
+  .success-state.active { display: block; }
+  .success-icon {
+    width: 56px; height: 56px; background: var(--success-bg); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center; margin: 0 auto 14px;
+    animation: bounceIn 0.5s ease 0.15s both;
+  }
+  .success-icon svg { width: 26px; height: 26px; color: var(--success); }
+  .success-state h2 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 20px; font-weight: 800; margin-bottom: 6px;
+  }
+  .success-state p { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .callback-note {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--primary-light); color: var(--primary);
+    font-size: 12px; font-weight: 600; padding: 8px 14px;
+    border-radius: 100px; margin-top: 14px;
+  }
+  .callback-note svg { width: 14px; height: 14px; }
+
+  .success-actions {
+    display: flex; flex-direction: column; gap: 10px;
+    margin-top: 20px; animation: fadeInUp 0.4s ease 0.3s both;
+  }
+  .success-actions .or-text {
+    font-size: 11px; color: var(--text-muted); text-align: center;
+    position: relative; margin: 2px 0;
+  }
+  .success-actions .or-text::before,
+  .success-actions .or-text::after {
+    content: ''; position: absolute; top: 50%; height: 1px;
+    width: calc(50% - 20px); background: var(--border);
+  }
+  .success-actions .or-text::before { left: 0; }
+  .success-actions .or-text::after { right: 0; }
+
+  .action-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px 20px; border-radius: var(--radius-sm); font-family: 'DM Sans', sans-serif;
+    font-size: 13.5px; font-weight: 600; cursor: pointer; transition: all 0.25s;
+    text-decoration: none; border: none;
+  }
+  .action-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
+
+  .btn-whatsapp {
+    background: #25D366; color: #fff;
+  }
+  .btn-whatsapp:hover {
+    background: #1EBE57; transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+  }
+  .btn-call {
+    background: var(--surface); color: var(--text);
+    border: 1.5px solid var(--border);
+  }
+  .btn-call:hover {
+    background: #fff; border-color: #ccc; transform: translateY(-1px);
+  }
+
+  /* TRUST */
+  .trust-strip {
+    display: flex; justify-content: center; gap: 16px; margin-top: 14px;
+    animation: fadeInUp 0.5s ease 0.2s both; flex-wrap: wrap;
+  }
+  .trust-item { display: flex; align-items: center; gap: 4px; font-size: 10.5px; color: var(--text-muted); }
+  .trust-item svg { width: 12px; height: 12px; color: var(--success); flex-shrink: 0; }
+
+  @keyframes fadeInUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes scaleIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
+  @keyframes bounceIn { 0% { opacity: 0; transform: scale(0.3); } 50% { transform: scale(1.1); } 70% { transform: scale(0.95); } 100% { opacity: 1; transform: scale(1); } }
+  @keyframes shake { 0%,100% { transform: translateX(0); } 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  @media (max-width: 480px) {
+    body { padding: 14px 12px; }
+    .form-card { padding: 20px 16px; }
+    .form-header h1 { font-size: 21px; }
+    .row { grid-template-columns: 1fr; gap: 0; }
+  }
+</style>
+</head>
+<body>
+<div class="form-wrapper">
+
+  <div class="form-header">
+    <div class="badge">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Free Instant Quote
+    </div>
+    <h1>Get Your Moving Quote</h1>
+    <p>Fill in your details — we'll call you within 30 minutes</p>
+  </div>
+
+  <div class="form-card">
+    <div class="error-banner" id="errorBanner"></div>
+
+    <!-- FORM FIELDS -->
+    <div id="formFields">
+
+      <!-- Contact -->
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        Contact Details
+      </div>
+
+      <div class="row">
+        <div class="field" id="fg-name">
+          <label>Full Name <span class="req">*</span></label>
+          <input type="text" id="fname" placeholder="Rajesh Kumar" autocomplete="name" />
+          <div class="err-msg">Enter your name</div>
+        </div>
+        <div class="field" id="fg-phone">
+          <label>Phone <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="9876543210" maxlength="10" autocomplete="tel" />
+          <div class="err-msg">Valid 10-digit number</div>
+        </div>
+      </div>
+
+      <div class="section-divider"></div>
+
+      <!-- Shifting -->
+      <div class="section-label">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        Shifting Details
+      </div>
+
+      <div class="row">
+        <div class="field" id="fg-from">
+          <label>Moving From <span class="req">*</span></label>
+          <input type="text" id="moveFrom" placeholder="Chennai, Adyar" />
+          <div class="err-msg">Enter pickup city</div>
+        </div>
+        <div class="field" id="fg-to">
+          <label>Moving To <span class="req">*</span></label>
+          <input type="text" id="moveTo" placeholder="Bangalore, HSR" />
+          <div class="err-msg">Enter drop city</div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="field" id="fg-date">
+          <label>Moving Date <span class="req">*</span></label>
+          <input type="date" id="moveDate" />
+          <div class="err-msg">Select a date</div>
+        </div>
+        <div class="field">
+          <label>Home Size</label>
+          <select id="homeSize">
+            <option value="">Select</option>
+            <option value="1 BHK">1 BHK</option>
+            <option value="2 BHK">2 BHK</option>
+            <option value="3 BHK">3 BHK</option>
+            <option value="4+ BHK">4+ BHK</option>
+            <option value="Office">Office</option>
+            <option value="Vehicle">Vehicle Only</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Service Type</label>
+        <select id="serviceType">
+          <option value="">Select service</option>
+          <option value="House Shifting">House Shifting</option>
+          <option value="Office Relocation">Office Relocation</option>
+          <option value="Vehicle Transport">Vehicle Transport (Bike/Car)</option>
+          <option value="Packing Only">Packing Only</option>
+          <option value="Loading/Unloading">Loading &amp; Unloading</option>
+          <option value="Storage">Storage / Warehousing</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>Special Notes <span style="font-weight:400;color:var(--text-muted);">(optional)</span></label>
+        <textarea id="notes" placeholder="Fragile items, packing needs, preferred time..."></textarea>
+      </div>
+
+      <button class="submit-btn" id="submitBtn" onclick="submitForm()">
+        Get Free Quote
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>
+      </button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-state" id="successState">
+      <div class="success-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      </div>
+      <h2>Quote Request Sent!</h2>
+      <p>Thank you! Our team will call you shortly with the best quote for your move.</p>
+      <div class="callback-note">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Expect a call within 30 minutes
+      </div>
+
+      <div class="success-actions">
+        <div class="or-text">or reach us directly</div>
+
+        <a class="action-btn btn-whatsapp" id="waBtn" href="#" target="_blank">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Chat on WhatsApp
+        </a>
+
+        <a class="action-btn btn-call" id="callBtn" href="#" target="_blank">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          Call Us Now
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="trust-strip">
+    <div class="trust-item">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      100% Safe
+    </div>
+    <div class="trust-item">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+      No Spam
+    </div>
+    <div class="trust-item">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+      Quick Response
+    </div>
+  </div>
+</div>
+
+<script>
+  var BOT_TOKEN = '8639603972:AAGv4CDNb-UIJKwB1_3lDWfsoytf0IhQnGQ';
+  var CHAT_ID = '8009995607';
+  var BIZ_NAME = 'Shivaji Packers and Movers';
+  var BIZ_PHONE = '7207482822';
+
+  document.getElementById('moveDate').setAttribute('min', new Date().toISOString().split('T')[0]);
+
+  document.getElementById('phone').addEventListener('input', function() {
+    this.value = this.value.replace(/\D/g, '').slice(0, 10);
+  });
+
+  function validate() {
+    var ok = true;
+    clearErrors();
+
+    if (!document.getElementById('fname').value.trim()) { setErr('fg-name','fname'); ok = false; }
+
+    var ph = document.getElementById('phone').value.trim();
+    if (!ph || !/^[6-9]\d{9}$/.test(ph)) { setErr('fg-phone','phone'); ok = false; }
+
+    if (!document.getElementById('moveFrom').value.trim()) { setErr('fg-from','moveFrom'); ok = false; }
+    if (!document.getElementById('moveTo').value.trim()) { setErr('fg-to','moveTo'); ok = false; }
+    if (!document.getElementById('moveDate').value) { setErr('fg-date','moveDate'); ok = false; }
+
+    if (!ok) {
+      var first = document.querySelector('.field.has-err input, .field.has-err select');
+      if (first) first.focus();
+    }
+
+    return ok;
+  }
+
+  function setErr(gid, iid) {
+    document.getElementById(gid).classList.add('has-err');
+    document.getElementById(iid).classList.add('err');
+  }
+  function clearErrors() {
+    document.querySelectorAll('.field').forEach(function(f) { f.classList.remove('has-err'); });
+    document.querySelectorAll('input,select').forEach(function(i) { i.classList.remove('err'); });
+  }
+  function showError(msg) {
+    var b = document.getElementById('errorBanner');
+    b.textContent = msg; b.classList.add('visible');
+  }
+  function hideError() { document.getElementById('errorBanner').classList.remove('visible'); }
+
+  async function submitForm() {
+    hideError();
+    if (!validate()) return;
+
+    var btn = document.getElementById('submitBtn');
+    btn.disabled = true;
+    btn.innerHTML = '<div class="spinner"></div> Sending...';
+
+    var lead = {
+      name: document.getElementById('fname').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      from: document.getElementById('moveFrom').value.trim(),
+      to: document.getElementById('moveTo').value.trim(),
+      date: document.getElementById('moveDate').value,
+      homeSize: document.getElementById('homeSize').value || 'Not specified',
+      service: document.getElementById('serviceType').value || 'Not specified',
+      notes: document.getElementById('notes').value.trim() || 'None'
+    };
+
+    var ts = new Date().toLocaleString('en-IN', {
+      timeZone: 'Asia/Kolkata', day: '2-digit', month: 'short', year: 'numeric',
+      hour: '2-digit', minute: '2-digit', hour12: true
+    });
+
+    var msg = '🚛 *NEW LEAD — ' + BIZ_NAME + '*\n'
+      + '━━━━━━━━━━━━━━━\n\n'
+      + '👤 *Customer*\n'
+      + '• Name: ' + lead.name + '\n'
+      + '• Phone: [' + lead.phone + '](tel:' + lead.phone + ')\n\n'
+      + '📦 *Shifting*\n'
+      + '• From: ' + lead.from + '\n'
+      + '• To: ' + lead.to + '\n'
+      + '• Date: ' + lead.date + '\n'
+      + '• Size: ' + lead.homeSize + '\n'
+      + '• Service: ' + lead.service + '\n\n'
+      + '📝 *Notes:* ' + lead.notes + '\n\n'
+      + '🕐 _' + ts + '_\n'
+      + '━━━━━━━━━━━━━━━\n'
+      + '⚡ Call them ASAP!';
+
+    try {
+      var res = await fetch('https://api.telegram.org/bot' + BOT_TOKEN + '/sendMessage', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: CHAT_ID, text: msg, parse_mode: 'Markdown' })
+      });
+      var data = await res.json();
+
+      if (data.ok) {
+        document.getElementById('formFields').style.display = 'none';
+        document.getElementById('successState').classList.add('active');
+
+        // Build WhatsApp message with customer's details
+        var waText = 'Hi ' + BIZ_NAME + '! 👋\n\n'
+          + 'I just submitted a quote request on your website.\n\n'
+          + '📦 *My Details:*\n'
+          + '• Name: ' + lead.name + '\n'
+          + '• From: ' + lead.from + '\n'
+          + '• To: ' + lead.to + '\n'
+          + '• Date: ' + lead.date + '\n'
+          + (lead.homeSize !== 'Not specified' ? '• Size: ' + lead.homeSize + '\n' : '')
+          + (lead.service !== 'Not specified' ? '• Service: ' + lead.service + '\n' : '')
+          + '\nPlease share the best quote. Thank you!';
+
+        var waUrl = 'https://wa.me/91' + BIZ_PHONE + '?text=' + encodeURIComponent(waText);
+        document.getElementById('waBtn').href = waUrl;
+
+        // Call button
+        document.getElementById('callBtn').href = 'tel:+91' + BIZ_PHONE;
+      } else {
+        throw new Error(data.description || 'Failed');
+      }
+    } catch(err) {
+      showError('Something went wrong. Please try again or call us directly.');
+      btn.disabled = false;
+      btn.innerHTML = 'Get Free Quote <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M22 2L11 13"/><path d="m22 2-7 20-4-9-9-4 20-7z"/></svg>';
+    }
+  }
+</script>
+</body>
+</html>
